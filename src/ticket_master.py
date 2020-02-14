@@ -10,7 +10,6 @@ subGenreId=KZazBEonSMnZfZ7vFEE      <- NHL
 import os
 import sys
 import time
-from types import SimpleNamespace
 
 import requests
 import slack
