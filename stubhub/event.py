@@ -1,4 +1,5 @@
-
+import calendar
+from datetime import datetime
 
 class Event:
     """ Event """
@@ -31,8 +32,15 @@ class Event:
     def min_price(self):
         return self._priceRange['minListPrice']
 
+    def date_details(self):
+        dt = datetime.strptime(self.date, "%Y-%m-%d")
+        day = calendar.day_name[dt.weekday()]
+        time = self._dates[11:16]
+        return f"{self.date} {day} {time}"
+
     def slack_str(self):
         message = ""
         if self.min_price < 20:
             message += ":moneybag:"
-        return f"{message} {self.date} - {self._name} - *${self.min_price}*"
+        date_details = self.date_details()
+        return f"{message} {date_details} - {self._name} - *${self.min_price}*"
